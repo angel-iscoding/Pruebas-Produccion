@@ -7,8 +7,9 @@ const app = express();
 
 const PORT = process.env.PORT || 3010;
 const DB_USER = process.env.DB_USER;
-const DB_PASSWORD = process.env.DB_PASS;
-const DB_DATABASE = process.env.DB_NAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_DATABASE = process.env.DB_DATABASE;
+const socketPath = process.env.INSTANCE_UNIX_SOCKET;
 /* const DB_CONNECTION_NAME = process.env.DB_CONNECTION_NAME;
 const socketPath = `/cloudsql/${DB_CONNECTION_NAME}`;
 
@@ -50,5 +51,6 @@ app.listen(PORT, '0.0.0.0', () => {
                 DB_USER: ${DB_USER}
                 DB_PASSWORD: ${DB_PASSWORD}
                 DB_DATABASE: ${DB_DATABASE}
+                Socketpath: ${socketPath}
                 `);
 });
