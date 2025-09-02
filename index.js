@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-const PORT = process.env.PORT || 3010;
+/* const PORT = process.env.PORT || 3010;
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASS;
 const DB_DATABASE = process.env.DB_NAME;
@@ -31,7 +31,7 @@ app.get('/health', (req, res) => {
     connection.release();
     res.status(200).send('Servidor y base de datos conectados.');
   });
-});
+}); */
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${PORT}`);
