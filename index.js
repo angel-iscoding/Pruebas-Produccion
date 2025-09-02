@@ -10,8 +10,6 @@ const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_DATABASE = process.env.DB_DATABASE;
 const socketPath = process.env.INSTANCE_UNIX_SOCKET;
-/* const DB_CONNECTION_NAME = process.env.DB_CONNECTION_NAME;
-const socketPath = `/cloudsql/${DB_CONNECTION_NAME}`;
 
 // Configuración de la conexión a Cloud SQL
 const pool = mysql.createPool({
@@ -31,16 +29,9 @@ app.get('/health', async (req, res) => {
     console.error('Database connection failed:', err);
     res.status(500).send('Database connection failed');
   }
-}); */
+}); 
 
-app.get('/health', async (req, res) => {
-  try {
-    res.status(200).send('Servidor y base de datos conectados.');
-  } catch (err) {
-    console.error('Database connection failed:', err);
-    res.status(500).send('Database connection failed');
-  }
-});
+
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Environment loaded:
