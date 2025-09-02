@@ -33,6 +33,10 @@ app.get('/health', (req, res) => {
   });
 }); */
 
+app.get("/health", (req, res) => {
+    res.send("I'm fine");
+})
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${PORT}`);
 });
