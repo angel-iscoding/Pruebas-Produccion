@@ -1,11 +1,11 @@
 import express from 'express';
-import mysql from 'mysql2'; // Importar la librería
+import mysql from 'mysql2/promise'; // Usa 'mysql2/promise' para trabajar con async/await
 import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
 
-/* const PORT = process.env.PORT || 3010;
+const PORT = process.env.PORT || 3010;
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASS;
 const DB_DATABASE = process.env.DB_NAME;
@@ -21,21 +21,16 @@ const pool = mysql.createPool({
 });
 
 // Lógica para verificar la conexión o manejar peticiones
-app.get('/health', (req, res) => {
-  // Intenta obtener una conexión para verificar que todo está bien
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Database connection failed:', err);
-      return res.status(500).send('Database connection failed');
-    }
-    connection.release();
+app.get('/health', async (req, res) => {
+  try {
+    const connection = await pool.getConnection(); // Obtiene una conexión
+    connection.release(); // Libera la conexión inmediatamente
     res.status(200).send('Servidor y base de datos conectados.');
-  });
-}); */
-
-app.get("/health", (req, res) => {
-    res.send("I'm fine");
-})
+  } catch (err) {
+    console.error('Database connection failed:', err);
+    res.status(500).send('Database connection failed');
+  }
+});
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${PORT}`);
